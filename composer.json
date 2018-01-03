@@ -1,0 +1,10 @@
+{
+  "name": "Es",
+  "require": {
+  },
+  "autoload": {
+    "psr-4": {
+      "Ayeo\\Es\\": "src"
+    }
+  }
+}
