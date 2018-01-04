@@ -15,5 +15,5 @@ $eventStraem = [
 $repository = new Repository();
 $aggregate = $repository->replay($eventStraem);
 
-var_dump($aggregate->getName());
-var_dump($aggregate->getAge());
+var_dump($aggregate->getName()); //returns Tomy Lee Jones
+var_dump($aggregate->getAge()); //returns 7

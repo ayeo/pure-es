@@ -12,5 +12,5 @@ $eventStream = $aggregate->getEvents();
 $repository = new Repository();
 $aggregate = $repository->replay($eventStream);
 
-var_dump($aggregate->getName());
-var_dump($aggregate->getAge());
+var_dump($aggregate->getName()); //returns Crazy Animal
+var_dump($aggregate->getAge()); //returns 5
