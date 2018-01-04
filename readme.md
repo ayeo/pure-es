@@ -1,1 +1,1 @@
-![screen](screen.png =250x)
+![screen](screen.png | width=250)
