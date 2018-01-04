@@ -6,13 +6,11 @@ class NameChanged extends Base
 	/** @var string */
 	private $newName;
 
-	public function __construct(string $newName)
-	{
+	public function __construct(string $newName) {
 		$this->newName = $newName;
 	}
 
-	public function getNewName(): string
-	{
+	public function getNewName(): string {
 		return $this->newName;
 	}
 }

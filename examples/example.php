@@ -6,7 +6,7 @@ use Ayeo\Es\Event;
 require_once "../vendor/autoload.php";
 
 $eventStraem = [
-	new Event\NameChanged("Harry Potter"),
+	new Event\Created("Harry Potter"),
 	new Event\TimePassed(2),
 	new Event\NameChanged("Tomy Lee Jones"),
 	new Event\TimePassed(5)

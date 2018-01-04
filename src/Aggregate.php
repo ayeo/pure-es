@@ -14,14 +14,12 @@ class Aggregate
 
 	private $events = [];
 
-	public function __construct(string $name)
-	{
+	public function __construct(string $name) {
 		$this->events[] = new Event\Created($name);
 		$this->name = $name;
 	}
 
-	public function changeName(string $newName)
-	{
+	public function changeName(string $newName) {
 		if ($this->name === $newName) {
 			throw new LogicException("Given name is same");
 		}
@@ -30,8 +28,7 @@ class Aggregate
 		$this->name = $newName;
 	}
 
-	public function increaseAge(int $interval)
-	{
+	public function increaseAge(int $interval) {
 		if ($this->age + $interval > 100) {
 			throw new LogicException("Nobody lives so long");
 		}
