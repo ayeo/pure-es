@@ -3,12 +3,10 @@ namespace Ayeo\Es;
 
 class Repository
 {
-	public function replay(array $eventStream): Aggregate
-	{
+	public function replay(array $eventStream): Aggregate {
 		$applier = new ApplyierX();
 
-		foreach ($eventStream as $event)
-		{
+		foreach ($eventStream as $event) {
 			$applier->apply($event);
 		}
 
