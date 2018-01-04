@@ -1,1 +1,1 @@
-![screen](screen.png | width=250)
+![screen](screen.png)
