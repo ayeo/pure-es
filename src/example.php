@@ -1,16 +1,15 @@
 <?php
 namespace Ayeo\Es;
 
-use Ayeo\Es\Event\NameChanged;
-use Ayeo\Es\Event\TimePassed;
+use Ayeo\Es\Event;
 
 require_once "../vendor/autoload.php";
 
 $eventStraem = [
-	new NameChanged("Harry Potter"),
-	new TimePassed(2),
-	new NameChanged("Tomy Lee Jones"),
-	new TimePassed(5)
+	new Event\NameChanged("Harry Potter"),
+	new Event\TimePassed(2),
+	new Event\NameChanged("Tomy Lee Jones"),
+	new Event\TimePassed(5)
 ];
 
 $repository = new Repository();
