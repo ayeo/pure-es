@@ -14,6 +14,9 @@ class Aggregate
 
 	private $events = [];
 
+	/** @var $children Child[]  */
+	private $children = [];
+
 	public function __construct(string $name) {
 		$this->events[] = new Event\Created($name);
 		$this->name = $name;
@@ -45,8 +48,11 @@ class Aggregate
 		return $this->age;
 	}
 
-	public function getEvents(): array
-	{
+	public function getChildren(): array {
+		return $this->children;
+	}
+
+	public function getEvents(): array {
 		return $this->events;
 	}
 }

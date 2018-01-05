@@ -9,7 +9,8 @@ $eventStraem = [
 	new Event\Created("Harry Potter"),
 	new Event\TimePassed(2),
 	new Event\NameChanged("Tomy Lee Jones"),
-	new Event\TimePassed(5)
+	new Event\TimePassed(5),
+	new Event\ChildAdded('3423-3422-2113', 'The child'),
 ];
 
 $repository = new Repository();
