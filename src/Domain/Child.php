@@ -9,8 +9,7 @@ class Child
 	/** @var string */
 	private $name;
 
-	public function __construct(string $guid, string $name)
-	{
+	public function __construct(string $guid, string $name) {
 		if (empty(trim($guid))) {
 			throw new \LogicException("Child GUID must not be empty");
 		}
@@ -23,13 +22,11 @@ class Child
 		$this->name = $name;
 	}
 
-	public function getGuid(): string
-	{
+	public function getGuid(): string {
 		return $this->guid;
 	}
 
-	public function getName(): string
-	{
+	public function getName(): string {
 		return $this->name;
 	}
 }
