@@ -1,12 +1,12 @@
 <?php
-namespace Ayeo\Es;
+namespace Ayeo\Es\Domain\Event;
 
-class Child
+class ChildAdded extends Base
 {
 	/** @var string */
 	private $guid;
 
-	/** @var string */
+	/* @var string */
 	private $name;
 
 	public function __construct(string $guid, string $name)

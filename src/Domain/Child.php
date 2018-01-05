@@ -1,16 +1,20 @@
 <?php
-namespace Ayeo\Es\Event;
+namespace Ayeo\Es\Domain;
 
-class ChildAdded extends Base
+class Child
 {
 	/** @var string */
 	private $guid;
 
-	/* @var string */
+	/** @var string */
 	private $name;
 
 	public function __construct(string $guid, string $name)
 	{
+		if (strlen($name) < 5) {
+			throw new \LogicException("Child name must be longer than 4 chars");
+		}
+
 		$this->guid = $guid;
 		$this->name = $name;
 	}

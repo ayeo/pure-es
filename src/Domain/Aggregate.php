@@ -1,8 +1,5 @@
 <?php
-namespace Ayeo\Es;
-
-use Ayeo\Es\Event;
-use LogicException;
+namespace Ayeo\Es\Domain;
 
 class Aggregate
 {
@@ -24,7 +21,7 @@ class Aggregate
 
 	public function changeName(string $newName) {
 		if ($this->name === $newName) {
-			throw new LogicException("Given name is same");
+			throw new \LogicException("Given name is same");
 		}
 
 		$this->events[] = new Event\NameChanged($newName);
@@ -38,6 +35,37 @@ class Aggregate
 
 		$this->events[] = new Event\TimePassed($interval);
 		$this->age += $interval;
+	}
+
+	public function hasChildWithName(string $name): bool {
+		/* @var @child Child */
+		foreach ($this->children as $child) {
+			if ($child->getName() === $name) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	public function addChild(string $childName) {
+		if ($this->hasChildWithName($childName)) {
+			throw new \LogicException(sprintf("Child with name '%s' already exists", $childName));
+		}
+
+		$hash = md5(rand(0, 99999));
+		$this->events[] = new Event\ChildAdded($hash, $childName);
+		$this->children[] = new Child($hash, $childName);
+	}
+
+	public function getChildrenNames() {
+		$names = [];
+		/* @var @child Child */
+		foreach ($this->children as $child) {
+			$names[] = $child->getName();
+		}
+
+		return $names;
 	}
 
 	public function getName(): string {

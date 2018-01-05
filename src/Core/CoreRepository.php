@@ -1,17 +1,29 @@
 <?php
-namespace Ayeo\Es;
+namespace Ayeo\Es\Core;
 
-class Repository
+abstract class CoreRepository
 {
-	public function replay(array $eventStream): Aggregate {
-		$applier = new EventApplier();
+	/** @var string	 */
+	private $applierClass;
+
+	/** @var string */
+	private $aggregateClass;
+
+	public function __construct(string $applierClass, string $aggregateClass) {
+		$this->applierClass = $applierClass;
+		$this->aggregateClass = $aggregateClass;
+	}
+
+	protected function doReplay(array $eventStream) {
+		$applierClass = $this->applierClass;
+		$applier = new $applierClass();
 
 		foreach ($eventStream as $event) {
 			$applier->apply($event);
 		}
 
 		$applierReflection = new \ReflectionObject($applier);
-		$agreggateReflection = new \ReflectionClass(Aggregate::class);
+		$agreggateReflection = new \ReflectionClass($this->aggregateClass);
 		$agreggate = $agreggateReflection->newInstanceWithoutConstructor();
 
 		/* @var $applierProperty \ReflectionProperty */

@@ -1,7 +1,8 @@
 <?php
 namespace Ayeo\Es;
 
-use Ayeo\Es\Event;
+use Ayeo\Es\Domain\Event;
+use Ayeo\Es\Infrastructure\Repository;
 
 require_once "../vendor/autoload.php";
 
