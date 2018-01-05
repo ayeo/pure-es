@@ -1,7 +1,9 @@
 <?php
 namespace Ayeo\Es\Domain\Event;
 
-class Created extends Base
+use Ayeo\Es\Core\Event;
+
+class Created extends Event
 {
 	/** @var string */
 	private $name;

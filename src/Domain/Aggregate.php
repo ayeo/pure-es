@@ -1,7 +1,9 @@
 <?php
 namespace Ayeo\Es\Domain;
 
-class Aggregate
+use Ayeo\Es\Core\AggregateRoot;
+
+class Aggregate extends AggregateRoot
 {
 	/** @var $name string */
 	private $name;
@@ -9,32 +11,28 @@ class Aggregate
 	/** @var $age int */
 	private $age = 0;
 
-	private $events = [];
-
 	/** @var $children Child[]  */
 	private $children = [];
 
 	public function __construct(string $name) {
-		$this->events[] = new Event\Created($name);
 		$this->name = $name;
+		$this->addEvent(new Event\Created($name));
 	}
 
 	public function changeName(string $newName) {
 		if ($this->name === $newName) {
 			throw new \LogicException("Given name is same");
 		}
-
-		$this->events[] = new Event\NameChanged($newName);
 		$this->name = $newName;
+		$this->addEvent(new Event\NameChanged($newName));
 	}
 
 	public function increaseAge(int $interval) {
 		if ($this->age + $interval > 100) {
 			throw new LogicException("Nobody lives so long");
 		}
-
-		$this->events[] = new Event\TimePassed($interval);
 		$this->age += $interval;
+		$this->addEvent(new Event\TimePassed($interval));
 	}
 
 	public function hasChildWithName(string $name): bool {
@@ -54,8 +52,8 @@ class Aggregate
 		}
 
 		$hash = md5(rand(0, 99999));
-		$this->events[] = new Event\ChildAdded($hash, $childName);
 		$this->children[] = new Child($hash, $childName);
+		$this->addEvent(new Event\ChildAdded($hash, $childName));
 	}
 
 	public function getChildrenNames() {
@@ -76,11 +74,10 @@ class Aggregate
 		return $this->age;
 	}
 
+	/**
+	 * @return Child[]
+	 */
 	public function getChildren(): array {
 		return $this->children;
-	}
-
-	public function getEvents(): array {
-		return $this->events;
 	}
 }

@@ -1,7 +1,9 @@
 <?php
 namespace Ayeo\Es\Domain\Event;
 
-class ChildAdded extends Base
+use Ayeo\Es\Core\Event;
+
+class ChildAdded extends Event
 {
 	/** @var string */
 	private $guid;

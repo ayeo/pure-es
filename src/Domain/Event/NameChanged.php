@@ -1,7 +1,9 @@
 <?php
 namespace Ayeo\Es\Domain\Event;
 
-class NameChanged extends Base
+use Ayeo\Es\Core\Event;
+
+class NameChanged extends Event
 {
 	/** @var string */
 	private $newName;

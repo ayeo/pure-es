@@ -1,7 +1,9 @@
 <?php
 namespace Ayeo\Es\Domain\Event;
 
-class TimePassed extends Base
+use Ayeo\Es\Core\Event;
+
+class TimePassed extends Event
 {
 	/** @var int */
 	private $years;
