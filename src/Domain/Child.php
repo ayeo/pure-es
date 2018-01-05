@@ -11,6 +11,10 @@ class Child
 
 	public function __construct(string $guid, string $name)
 	{
+		if (empty(trim($guid))) {
+			throw new \LogicException("Child GUID must not be empty");
+		}
+
 		if (strlen($name) < 5) {
 			throw new \LogicException("Child name must be longer than 4 chars");
 		}
